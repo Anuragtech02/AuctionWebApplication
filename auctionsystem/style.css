@@ -1,0 +1,128 @@
+body{
+    background-image: url('BG.jpg')
+    
+}
+h1{
+    text-align: center
+
+}
+input[type=email]:focus{
+    background-color : lightblue;
+    outline: none;   
+}
+
+input[type=password]:focus{
+    background-color: lightblue;
+    outline: none;
+}
+
+input[type=text]:focus{
+    background-color: lightblue;
+    outline:none;
+}
+#home_h4{
+	
+	position: absolute;   
+    left: 95%;
+    top: 3%; 
+    transform: translate(-50%, -50%)
+
+}
+
+#home{
+	
+	box-shadow: 5px 5px 5px 5px #313131;
+    position: absolute;   
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%);
+	width: 300px; 
+	border: 1px solid #d6d7da; 
+	padding: 0px 15px 15px 15px; 
+	border-radius: 5px;
+	font-family: arial; 
+	line-height: 16px;
+	color: #333333; font-size:	14px; 
+	background: #ffffff;
+}
+#add{
+	
+	box-shadow: 5px 5px 5px 5px #313131;
+    position: absolute;   
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%);
+	width: 300px; 
+	border: 1px solid #d6d7da; 
+	padding: 0px 15px 15px 15px; 
+	border-radius: 5px;
+	font-family: arial; 
+	line-height: 16px;
+	color: #333333; font-size:	14px; 
+	background: #ffffff;
+
+}
+
+#container{width: 700px;}
+
+#login{
+   
+
+	box-shadow: 5px 5px 5px 5px #313131;
+    position: absolute;   
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%)
+}
+#signup{
+
+    box-shadow: 5px 5px 5px 5px #313131;
+    position: absolute;   
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%)
+
+}
+#table_remove{
+    
+        border-collapse: collapse;
+        width: 100%;
+        color: #0b0e0d;
+        font-family: monospace;
+        font-size: 25px;
+        text-align: center;
+        position: relative;   
+        left: 70%;
+        top: 40%; 
+        transform: translate(-50%, -50%)
+        }
+        th {
+        background-color: #10b8c4;
+        color: white;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2
+        
+}
+#remove{
+    text-align: right;
+    position: absolute;   
+    left: 80%;
+    top: 75%; 
+    transform: translate(-50%, -50%)
+}
+
+#other{
+    position: relative;
+    top:30%;
+}
+#add_p{
+    position: absolute;
+    top:65%;
+    left:75%;
+}
+p{
+    text-align: left;
+    color:black;
+    padding: 4%;
+}
+

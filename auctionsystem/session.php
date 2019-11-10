@@ -8,9 +8,8 @@ $userClass = new userClass();
 
 if(empty($session_uid))
 {
-$url=BASE_URL.'index.php';
-header("Location: $url");
+	print_r("You must login first to see this page !");
+	$url=BASE_URL.'login.php';
+	header("Location: $url");
 }
-
-
 ?>

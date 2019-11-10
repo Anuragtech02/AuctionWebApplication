@@ -5,7 +5,7 @@ define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'auction');
-define("BASE_URL", "http://localhost/PHPLoginHash/"); 
+define("BASE_URL", "http://localhost/auction/"); 
 
 function getDB() 
 {
