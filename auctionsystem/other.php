@@ -11,16 +11,24 @@ if (!empty($_POST['addBid']))
 {
 
     $itemName=$_POST['itemName'];
-    $your_bid=$_POST['your_bid'];
+	$your_bid=$_POST['your_bid'];
+	$for_uid=$_POST['forid'];
 	$uid=$userDetails->uid;
-    $add_bid=$userClass->bid($uid, $itemName, $your_bid);
+	$category=$userClass->getCategory($itemName,$your_bid)->category;
+	$add_bid=$userClass->bid($uid, $itemName, $your_bid);
+	$offerAdded=$userClass->sendBid($uid,$itemName,$category,$for_uid,$your_bid);	
 
     if($add_bid)
     {
-        $url=BASE_URL.'home.php';
-        echo "Success !";
+		if($offerAdded)
+		{
+			$url=BASE_URL.'home.php';
+       		 echo "Success !";
     	//header("Location: $url");
-    }
+		}
+		
+	}
+	
     else
     {
       $errorMsgAdd="Something went wrong !.";
@@ -37,7 +45,12 @@ if (!empty($_POST['addBid']))
 </head>
 <style>
 #container{width: 700px}
-	#login,#signup{width: 300px; border: 1px solid #d6d7da; padding: 0px 15px 15px 15px; border-radius: 5px;font-family: arial; line-height: 16px;color: #333333; font-size: 14px; background: #ffffff;rgba(200,200,200,0.7) 0 4px 10px -1px}
+	#login,#other_div{width: 300px; border: 1px solid #d6d7da;
+		position: absolute;   
+    	left: 50%;
+    	top: 50%; 
+	    transform: translate(-50%, -50%);
+		padding: 0px 15px 15px 15px; border-radius: 5px;font-family: arial; line-height: 16px;color: #333333; font-size: 14px; background: #ffffff;rgba(200,200,200,0.7) 0 4px 10px -1px}
 	h3{color:#365D98}
 	form label{font-weight: bold;}
 	form label, form input{display: block;margin-bottom: 5px;width: 90%}
@@ -54,15 +67,17 @@ if (!empty($_POST['addBid']))
 </style>
 <body>
 <h1>Welcome <?php echo $userDetails->name; ?></h1>
+
 <div id="container">
-<div id="add">
+<div id="other_div">
 	<center><h2>Items availbale for bidding</h2></center>
 	<br>
 	<div id="otherTable">
-	<table>
+	<center><table>
 		<tr>
         <th>UID</th>
         <th>Item Name</th>
+		<th>Category</th>
         <th>Min. Bid</th>
 		</tr>
 		<?php
@@ -72,27 +87,28 @@ if (!empty($_POST['addBid']))
 			if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 			}
-            $sql = "SELECT uid, item_name, item_min_bid FROM items";
+            $sql = "SELECT uid, item_name, category, item_min_bid FROM items where uid!=$uid";
             $result = $conn->query($sql);
-            if ($result->num_rows < 1){
+            /*if ($result->num_rows < 1){
                 echo "0 results";
-            }
+            }*/
 			if ($result->num_rows > 0) {
 				// output data of each row
 				while($row = $result->fetch_assoc()) {
                 echo "<tr><td>" . $row["uid"]. "</td><td>" . $row["item_name"] . "</td><td>"
-                . $row["item_min_bid"] . "</td><td>";
+                . $row["category"] ."</td><td>". $row["item_min_bid"] . "</td><td>";
             }
 			echo "</table>";
-			} else { echo "0 results"; }
+			} else { echo "No items available!"; }
 			$conn->close();
 		?>
-    </table>
+    </table></center>
     <br>
     <h2><center>Your Bids</center></h2>
-    <table>
+    <center><table>
         <tr>
         <th>Item Name</th>
+		<th>Category</th>
         <th>Your Bid</th>
 		</tr>
 		<?php
@@ -102,23 +118,25 @@ if (!empty($_POST['addBid']))
 			if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT item_name,your_bid FROM items WHERE bid_id=$uid";
+            $sql = "SELECT item_name, category, your_bid FROM items WHERE bid_id=$uid";
 			$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
 				// output data of each row
 				while($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["item_name"]. "</td><td>". $row["your_bid"]. "</td><td>";
+                echo "<tr><td>" . $row["item_name"]. "</td><td>". $row["category"]. "</td><td>". $row["your_bid"]. "</td><td>";
 			}
 			echo "</table>";
-			} else { echo "0 results"; }
+			} else { echo "No items available!"; }
 			$conn->close();
 		?>
-    </table>
+    </table></center>
 	</div>		
 	<form method="post" action="" name="bidItem">
 		<br>
 		<label>Enter name of the item to bid</label>
-        <input type="text" name="itemName" autocomplete="off" />
+		<input type="text" name="itemName" autocomplete="off" />
+		<label>Enter UID of the item</label>
+		<input type="number" name="forid" autocomplete="off" />
         <label>Enter amount</label>
 		<input type="number" name="your_bid" autocomplete="off" />
 		<div class="errorMsg"><?php echo $errorMsgAdd; ?></div>

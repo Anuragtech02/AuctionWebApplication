@@ -18,16 +18,17 @@ if (!empty($_POST['signupSubmit']))
 
 	if($username_check && $email_check && $password_check && strlen(trim($name))>0) 
 	{
-    $uid=$userClass->userRegistration($username,$password,$email,$name);
-    if($uid)
-    {
-    	$url=BASE_URL.'home.php';
-    	header("Location: $url");
-    }
-    else
-    {
-      $errorMsgReg="Username or Email already exits.";
-    }
+	$uid=$userClass->userRegistration($username,$password,$email,$name);
+	
+		if($uid)
+		{
+			$url=BASE_URL.'home.php';
+			header("Location: $url");
+		}
+		else
+		{
+		$errorMsgReg="Username or Email already exits.";
+		}
     
 	}
 }
@@ -64,16 +65,16 @@ if (!empty($_POST['signupSubmit']))
 			<h3>Registration</h3>
 			<form method="post" action="" name="signup">
 				<label>Name</label>
-				<input type="text" name="nameReg" autocomplete="off" />
+				<input type="text" name="nameReg" autocomplete="off" required/>
 				<label>Email</label>
-				<input type="text" name="emailReg" autocomplete="off" />
+				<input type="text" name="emailReg" autocomplete="off" required/>
 				<label>Username</label>
-				<input type="text" name="usernameReg" autocomplete="off" />
+				<input type="text" name="usernameReg" autocomplete="off" required/>
 
 				<label>Password</label>
-				<input type="password" name="passwordReg" autocomplete="off"/>
+				<input type="password" name="passwordReg" autocomplete="off" required/>
 				<div class="errorMsg"><?php echo $errorMsgReg; ?></div>
-				<p>Already have an account ? <a href="login.php">Login</a></p>
+				<p>Already have an account ? <a href="index.php">Login</a></p>
 				<input type="submit" class="button" name="signupSubmit" value="Signup">
 			</form>
 		</div>

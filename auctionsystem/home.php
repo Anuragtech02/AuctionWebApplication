@@ -19,6 +19,7 @@ $userDetails=$userClass->userDetails($session_uid);
 	<p>1.<a href="add.php" style="color:green"> Add item for auction.</a></p>
 	<p>2.<a href="remove.php" style="color:green"> Remove item from auction.</a></p>
 	<p>3.<a href="other.php" style="color:green"> See other items for bidding.</a></p>
+ 	<p>4.<a href="received.php" style="color:green"> Bids received.</a></p>
 </div>
 
 <b><h4 id="home_h4"><a href="<?php echo BASE_URL; ?>logout.php">Logout</a></h4></b>

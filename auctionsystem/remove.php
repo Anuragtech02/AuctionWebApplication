@@ -64,11 +64,13 @@ if (!empty($_POST['itemDelete']))
 		</tr>
 		<?php
 			$conn = mysqli_connect("localhost", "root", "", "auction");
+			$uid=$userDetails->uid;
+
 			// Check connection
 			if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 			}
-			$sql = "SELECT item_name, item_min_bid FROM items";
+			$sql = "SELECT item_name, item_min_bid FROM items WHERE uid=$uid ";
 			$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
 				// output data of each row

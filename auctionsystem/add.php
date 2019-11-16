@@ -14,8 +14,9 @@ if (!empty($_POST['itemAdd']))
 
 	$itemName=$_POST['itemName'];
 	$item_min_bid=$_POST['minBid'];
+	$category=$_POST['itemCategory'];
 	$uid=$userDetails->uid;
-    $item_id=$userClass->addItem($uid,$itemName,$item_min_bid);
+    $item_id=$userClass->addItem($uid,$itemName,$category,$item_min_bid);
 
     if($item_id)
     {
@@ -60,9 +61,11 @@ if (!empty($_POST['itemAdd']))
 	<form method="post" action="" name="additem">
 		<br>
 		<label>Item Name</label>
-		<input type="text" name="itemName" autocomplete="off" />
+		<input type="text" name="itemName" autocomplete="off" required/>
+		<label>Category</label>
+		<input type="text" name="itemCategory" autocomplete="off" placeholder="Ex. Crockery, Electronics, Clothes etc." required/>
 		<label>Enter minimum Bid</label>
-		<input type="text" name="minBid" autocomplete="off" />
+		<input type="text" name="minBid" autocomplete="off" required/>
 		<p id="add_p"><a href="home.php">BACK</p>
 		<div class="errorMsg"><?php echo $errorMsgAdd; ?></div>
 		<input type="submit" class="button" name="itemAdd" value="Add">
