@@ -80,15 +80,16 @@ class userClass
 
      }
 	 /*Adds item to database*/
-	 public function addItem($uid, $item_name, $category, $item_min_bid)
+	 public function addItem($uid, $item_name, $category, $item_min_bid, $image)
 	 {
 		try{
 			$db = getDB();
-			$stmt = $db->prepare("INSERT INTO items (uid,item_name,category,item_min_bid) values (:uid,:item_name,:category,:item_min_bid)");
+			$stmt = $db->prepare("INSERT INTO items (uid,item_name,category,item_min_bid,image) values (:uid,:item_name,:category,:item_min_bid,:image)");
 			$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
 			$stmt->bindParam("item_name", $item_name,PDO::PARAM_STR);
 			$stmt->bindParam("category", $category,PDO::PARAM_STR);
 			$stmt->bindParam("item_min_bid", $item_min_bid, PDO::PARAM_INT);
+			$stmt->bindParam("image", $image, PDO::PARAM_STR);
 			$stmt->execute();
 			$item_id=$db->lastInsertId();
 			$db=null;

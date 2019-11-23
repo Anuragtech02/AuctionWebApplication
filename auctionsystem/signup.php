@@ -63,7 +63,7 @@ if (!empty($_POST['signupSubmit']))
 	<div id="container">
 		<div id="signup">
 			<h3>Registration</h3>
-			<form method="post" action="" name="signup">
+			<form method="post" action="" name="signupSubmit">
 				<label>Name</label>
 				<input type="text" name="nameReg" autocomplete="off" required/>
 				<label>Email</label>

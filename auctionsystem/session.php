@@ -9,7 +9,7 @@ $userClass = new userClass();
 if(empty($session_uid))
 {
 	print_r("You must login first to see this page !");
-	$url=BASE_URL.'login.php';
+	$url=BASE_URL.'index.php';
 	header("Location: $url");
 }
 ?>

@@ -59,6 +59,7 @@ if (!empty($_POST['itemDelete']))
 	<div id="table_remove">
 	<table>
 		<tr>
+		<th>Image</th>
 		<th>Item Name</th>
 		<th>Min. Bid</th>
 		</tr>
@@ -70,12 +71,12 @@ if (!empty($_POST['itemDelete']))
 			if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 			}
-			$sql = "SELECT item_name, item_min_bid FROM items WHERE uid=$uid ";
+			$sql = "SELECT item_name,image, item_min_bid FROM items WHERE uid=$uid ";
 			$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
 				// output data of each row
 				while($row = $result->fetch_assoc()) {
-				echo "<tr><td>" . $row["item_name"]. "</td><td>" . $row["item_min_bid"] . "</td><td>";
+				echo "<tr><td>" . "<img src='images/".$row["image"]."' height = 60 width = 100px>" ."</td><td>". $row["item_name"]. "</td><td>" . $row["item_min_bid"] . "</td><td>";
 			}
 			echo "</table>";
 			} else { echo "0 results"; }
@@ -95,7 +96,6 @@ if (!empty($_POST['itemDelete']))
 
 <b><h4 id="home_h4"><a href="<?php echo BASE_URL; ?>logout.php">Logout</a></h4></b>
 
-</form>
 </div>
 </body>
 </html>
